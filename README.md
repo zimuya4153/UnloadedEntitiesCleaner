@@ -1,35 +1,29 @@
-# LeviLamina Mod Template
+# UnloadedEntitiesCleaner - 清理未加载区块生物
 
-A LeviLamina mod template
+> 温馨提示：此插件支持热加载/重载。
 
-This mod is a template for developing LeviLamina mods.
+## 配置文件
+```json
+{
+    "version": 1,// 配置文件版本
+    "clearList": [ // 清除实体的列表(可填命名空间ID)
+        "minecraft:zombie_pigman", // 僵尸猪人
+        "minecraft:item", // 掉落物
+        "minecraft:xp_orb" // 经验
+    ],
+    "whiteList": [ // 白名单列表(可填标签名或命名)
+        "noClear"
+    ],
+    "clearNamedEntity": false // 是否允许清除命名实体(填false则不清除有命名的实体)
+}
+```
 
-## Install
+## 安装方法
 
-Generate a new repository from this template.
-
-## Usage
-
-Before using this mod template, make sure that you have installed XMake and a Minecraft Bedrock Server with LeviLamina.
-
-1. Clone the new repository into a local folder.
-
-1. Change the mod name and the expected LeviLamina version in `xmake.lua`.
-
-1. Add your code.
-
-1. Run `xmake repo -u` in the root of the repository.
-
-1. Run `xmake` to build the mod.
-
-Now the build is complete at `bin/`.
-
-## Contributing
-
-Ask questions by creating an issue.
-
-PRs accepted.
-
-## License
-
-CC0-1.0 © LiteLDev
+- 手动安装
+  - 前往[Releases](https://github.com/zimuya4153/UnloadedEntitiesCleaner/releases)下载最新版本的`UnloadedEntitiesCleaner-windows-x64.zip`
+  - 解压`压缩包内的`文件夹到`./plugins/`目录
+- Lip 安装
+  - 输入命令`lip install -y github.com/zimuya4153/UnloadedEntitiesCleaner`
+- ~~一条龙安装~~
+  - ~~去 Q 群，喊人，帮你安装~~
