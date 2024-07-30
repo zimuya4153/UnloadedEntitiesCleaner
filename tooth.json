@@ -1,7 +1,7 @@
 {
     "format_version": 2,
     "tooth": "github.com/zimuya4153/UnloadedEntitiesCleaner",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "info": {
         "name": "UnloadedEntitiesCleaner",
         "description": "清理未加载区块生物",
@@ -11,7 +11,7 @@
             "levilamina"
         ]
     },
-    "asset_url": "https://github.com/zimuya4153/UnloadedEntitiesCleaner/releases/download/v1.1.0/UnloadedEntitiesCleaner-windows-x64.zip",
+    "asset_url": "https://github.com/zimuya4153/UnloadedEntitiesCleaner/releases/download/v1.0.1/UnloadedEntitiesCleaner-windows-x64.zip",
     "prerequisites": {
         "github.com/LiteLDev/LeviLamina": ">=0.13.4"
     },
