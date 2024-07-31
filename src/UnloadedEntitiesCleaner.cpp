@@ -13,6 +13,7 @@
 #include <mc/world/level/storage/DBStorage.h>
 #include <memory>
 #include <string>
+#include <thread>
 #include <unordered_map>
 
 
@@ -72,24 +73,26 @@ bool Entry::enable() {
         logger.warn("未填写清除配置，将不启用清除");
         return true;
     }
-    auto& Storage = ll::service::getLevel()->getLevelStorage();
-    logger.warn("开始清除");
-    std::unordered_map<std::string, int> results = {};
-    Storage.forEachKeyWithPrefix(
-        "actorprefix",
-        DBHelpers::Category::Actor,
-        [&results, &Storage](std::string_view key_left, std::string_view data) {
-            auto nbt = CompoundTag::fromBinaryNbt(data);
-            if (checkEntity(nbt)) {
-                results[nbt->getString("identifier")] += 1;
-                Storage.deleteData("actorprefix" + std::string(key_left), DBHelpers::Category::Actor);
+    std::thread([]() {
+        auto& Storage = ll::service::getLevel()->getLevelStorage();
+        logger.warn("开始清除");
+        std::unordered_map<std::string, int> results = {};
+        Storage.forEachKeyWithPrefix(
+            "actorprefix",
+            DBHelpers::Category::Actor,
+            [&results, &Storage](std::string_view key_left, std::string_view data) {
+                auto nbt = CompoundTag::fromBinaryNbt(data);
+                if (checkEntity(nbt)) {
+                    results[nbt->getString("identifier")] += 1;
+                    Storage.deleteData("actorprefix" + std::string(key_left), DBHelpers::Category::Actor);
+                }
             }
+        );
+        for (auto& result : results) {
+            logger.warn("成功清除 {} 个 {}", std::to_string(result.second), result.first);
         }
-    );
-    for (auto& result : results) {
-        logger.warn("成功清除 {} 个 {}", std::to_string(result.second), result.first);
-    }
-    logger.warn("清除结束");
+        logger.warn("清除结束");
+    }).detach();
     return true;
 }
 

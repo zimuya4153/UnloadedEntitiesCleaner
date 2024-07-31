@@ -9,7 +9,12 @@
     "clearList": [ // 清除实体的列表(可填命名空间ID)
         "minecraft:zombie_pigman", // 僵尸猪人
         "minecraft:item", // 掉落物
-        "minecraft:xp_orb" // 经验
+        "minecraft:xp_orb", // 经验
+        "minecraft:falling_block", // 下落的方块(如沙子，龙蛋等)
+        "minecraft:silverfish", // 蠹虫
+        "minecraft:tnt", // TNT
+        "minecraft:tnt_minecart", // TNT矿车
+        "minecraft:area_effect_cloud" // 区域效果云(滞留药水丢出来生成的)
     ],
     "whiteList": [ // 白名单列表(可填标签名或命名)
         "noClear"
